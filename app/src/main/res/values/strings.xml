@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">MyChat</string>
+    <string name="developed">Developed by Kharchenko V</string>
+    <string name="for_who">for USUE</string>
+
+    <string name="first_step">1</string>
+    <string name="second_step">2</string>
+    <string name="third_step">3</string>
+    <string name="enter_phone">Введите номер телефона</string>
+    <string name="enter_otp">Введите код с смс</string>
+    <string name="enter_username">Введите имя пользователя</string>
+    <string name="next">Далее</string>
+
+</resources>
