@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 public class LoginOtpActivity extends AppCompatActivity {
 
     String phoneNumber;
-    Long timeoutSeconds = 60L;
+    Long timeoutSeconds = 30L;
     String verificationCode;
     PhoneAuthProvider.ForceResendingToken resendingToken;
 
@@ -134,6 +134,7 @@ public class LoginOtpActivity extends AppCompatActivity {
         });
     }
 
+    // Настройка таймера для повторной отправки кода
     void startResendTimer(){
         resendOtpTextView.setEnabled(false);
         Timer timer = new Timer();
@@ -141,9 +142,9 @@ public class LoginOtpActivity extends AppCompatActivity {
             @Override
             public void run() {
                 timeoutSeconds--;
-                resendOtpTextView.setText("Отправить код повторно через "+ timeoutSeconds +"секунд");
+                resendOtpTextView.setText("Отправить код повторно через "+ timeoutSeconds +" секунд");
                 if(timeoutSeconds<=0){
-                    timeoutSeconds=60L;
+                    timeoutSeconds=30L;
                     timer.cancel();
                     runOnUiThread(() -> resendOtpTextView.setEnabled(true));
                 }
