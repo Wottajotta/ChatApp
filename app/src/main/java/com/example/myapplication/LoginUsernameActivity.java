@@ -1,8 +1,5 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,12 +7,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.myapplication.model.UserModel;
 import com.example.myapplication.utils.FirebaseUtil;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
-import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.Objects;
 
@@ -41,9 +37,7 @@ public class LoginUsernameActivity extends AppCompatActivity {
         phoneNumber = Objects.requireNonNull(getIntent().getExtras()).getString("phone");
         getUserName();
 
-        letMeInBtn.setOnClickListener(view -> {
-            setUsername();
-        });
+        letMeInBtn.setOnClickListener(view -> setUsername());
 
     }
 
@@ -63,16 +57,13 @@ public class LoginUsernameActivity extends AppCompatActivity {
         }
 
         // Заносим нового пользователя в базу данных
-        FirebaseUtil.currentUserDetails().set(userModel).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                setInProgress(false);
-                if(task.isSuccessful()) {
-                    Intent intent = new Intent(LoginUsernameActivity.this, MainActivity.class);
-                    // При повторном входе в приложение, пропускаем окна регистрации и переходим в основную активность
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                }
+        FirebaseUtil.currentUserDetails().set(userModel).addOnCompleteListener(task -> {
+            setInProgress(false);
+            if(task.isSuccessful()) {
+                Intent intent = new Intent(LoginUsernameActivity.this, MainActivity.class);
+                // При повторном входе в приложение, пропускаем окна регистрации и переходим в основную активность
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
 
@@ -82,16 +73,13 @@ public class LoginUsernameActivity extends AppCompatActivity {
     // Получение имени пользователя из базы данных
     void getUserName(){
         setInProgress(true);
-        FirebaseUtil.currentUserDetails().get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                setInProgress(false);
-                if(task.isSuccessful()){
-                   userModel = task.getResult().toObject(UserModel.class);
-                   if(userModel != null) {
-                       usernameInput.setText(userModel.getUsername());
-                   }
-                }
+        FirebaseUtil.currentUserDetails().get().addOnCompleteListener(task -> {
+            setInProgress(false);
+            if(task.isSuccessful()){
+               userModel = task.getResult().toObject(UserModel.class);
+               if(userModel != null) {
+                   usernameInput.setText(userModel.getUsername());
+               }
             }
         });
     }
