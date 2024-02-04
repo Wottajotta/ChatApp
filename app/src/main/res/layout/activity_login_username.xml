@@ -96,7 +96,7 @@
             android:background="@drawable/edit_text_rounded_corner"
             android:elevation="5dp"
             android:hint="Имя пользователя"
-            android:inputType="phone"
+            android:inputType="text"
             android:minHeight="48dp"
             android:padding="10dp" />
     </LinearLayout>
