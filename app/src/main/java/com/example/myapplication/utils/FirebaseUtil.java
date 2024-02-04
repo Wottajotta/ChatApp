@@ -15,4 +15,14 @@ public class FirebaseUtil {
     public static DocumentReference currentUserDetails(){
         return FirebaseFirestore.getInstance().collection("users").document(currenntUserId());
     }
+
+    // Метод для перехода к основной активности, минуя авторизацию
+    public static boolean isLoggedIn() {
+        if(currenntUserId() != null) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }

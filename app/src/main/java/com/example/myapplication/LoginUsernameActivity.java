@@ -43,13 +43,13 @@ public class LoginUsernameActivity extends AppCompatActivity {
 
     // Метод для ввода имени пользователя впервые
     void setUsername() {
-        setInProgress(true);
         String username = usernameInput.getText().toString();
         if(username.isEmpty() || username.length() <3){
             usernameInput.setError("Имя пользователя должно быть не менее 3-х символов!");
             return;
         }
         // Проверяем, существует ли пользователь, если нет - создаём
+        setInProgress(true);
         if(userModel !=null) {
             userModel.setUsername(username);
         }else{

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.example.myapplication.utils.FirebaseUtil;
+
 public class SplashActivity extends AppCompatActivity {
 
     @Override
@@ -15,11 +17,14 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         // Переходим от экрана загрузки к экрану номера телефона
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            // Проверяем, авторизирован ли пользователь
+            if(FirebaseUtil.isLoggedIn()){
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+            }else{
                 startActivity(new Intent(SplashActivity.this, LoginPhoneNumberActivity.class));
             }
-        }, 2000);
+            finish();
+        }, 1000);
     }
 }
