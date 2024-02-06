@@ -1,13 +1,19 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
+
 import android.os.Bundle;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+
+import com.example.myapplication.adapter.SearchUserRecyclerAdapter;
+import com.example.myapplication.model.UserModel;
+import com.example.myapplication.utils.FirebaseUtil;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.Query;
 
 public class SearchUserActivity extends AppCompatActivity {
 
@@ -15,6 +21,8 @@ public class SearchUserActivity extends AppCompatActivity {
     ImageButton searchButton;
     ImageButton backButton;
     RecyclerView recyclerView;
+
+    SearchUserRecyclerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +37,7 @@ public class SearchUserActivity extends AppCompatActivity {
         searchInput.requestFocus();
 
         // Функционал кнопки "назад"
-        backButton.setOnClickListener(view -> {
-            onBackPressed();
-        });
+        backButton.setOnClickListener(view -> onBackPressed());
 
         // Функционал кнопки "поиск"
         searchButton.setOnClickListener(view -> {
@@ -50,5 +56,40 @@ public class SearchUserActivity extends AppCompatActivity {
     // Метод для отображения всех пользователей в поиске
     void setupSearchRecyclerView(String searchTerm) {
 
+        // Создаём запрос
+        Query query = FirebaseUtil.allUserCollectionReference()
+                .whereGreaterThanOrEqualTo("username", searchTerm);
+
+        // Получаем данные из запроса
+        FirestoreRecyclerOptions<UserModel> options = new FirestoreRecyclerOptions.Builder<UserModel>()
+                .setQuery(query,UserModel.class).build();
+
+        // Преобразовываем запрос
+        adapter  = new SearchUserRecyclerAdapter(options,getApplicationContext());
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+        adapter.startListening();
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(adapter!=null)
+            adapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(adapter!=null)
+            adapter.stopListening();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(adapter!=null)
+            adapter.startListening();
     }
 }

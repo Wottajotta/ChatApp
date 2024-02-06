@@ -1,6 +1,7 @@
 package com.example.myapplication.utils;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -18,11 +19,10 @@ public class FirebaseUtil {
 
     // Метод для перехода к основной активности, минуя авторизацию
     public static boolean isLoggedIn() {
-        if(currenntUserId() != null) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return currenntUserId() != null;
+    }
+
+    public static CollectionReference allUserCollectionReference() {
+    return FirebaseFirestore.getInstance().collection("users");
     }
 }

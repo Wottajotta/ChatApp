@@ -3,25 +3,35 @@ package com.example.myapplication.model;
 import com.google.firebase.Timestamp;
 
 public class UserModel {
-    private String phome;
+    private String phone;
     private String username;
     private Timestamp createTimestamp;
+    private String userId;
 
     public UserModel() {
     }
 
-    public UserModel(String phome, String username, Timestamp createTimestamp) {
-        this.phome = phome;
+    public UserModel(String phone, String username, Timestamp createTimestamp, String userId) {
+        this.phone = phone;
         this.username = username;
         this.createTimestamp = createTimestamp;
+        this.userId = userId;
     }
 
-    public String getPhome() {
-        return phome;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public void setPhome(String phome) {
-        this.phome = phome;
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 
     public String getUsername() {
