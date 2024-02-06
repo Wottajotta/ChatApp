@@ -11,6 +11,6 @@
     <string name="enter_username">Введите имя пользователя</string>
     <string name="next">Далее</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_user">Поиск</string>
 
 </resources>
