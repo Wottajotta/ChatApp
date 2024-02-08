@@ -12,5 +12,6 @@
     <string name="next">Далее</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="search_user">Поиск</string>
+    <string name="message_hint">Сообщение</string>
 
 </resources>
