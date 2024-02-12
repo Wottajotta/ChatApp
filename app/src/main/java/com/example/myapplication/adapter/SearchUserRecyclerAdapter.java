@@ -35,7 +35,7 @@ public class SearchUserRecyclerAdapter extends FirestoreRecyclerAdapter<UserMode
         holder.usernameText.setText(model.getUsername());
         holder.phoneText.setText(model.getPhone());
         if(model.getUserId().equals(FirebaseUtil.currenntUserId())) {
-            holder.usernameText.setText(model.getUsername()+ " (Me)");
+            holder.usernameText.setText(model.getUsername()+ " (Вы)");
         }
 
         // переход в чат с пользователем

@@ -90,6 +90,6 @@ public class SearchUserActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if(adapter!=null)
-            adapter.startListening();
+            adapter.notifyDataSetChanged();
     }
 }

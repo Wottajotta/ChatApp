@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -8,12 +9,16 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.myapplication.adapter.ChatRecyclerAdapter;
 import com.example.myapplication.model.ChatMessageModel;
 import com.example.myapplication.model.ChatRoomModel;
 import com.example.myapplication.model.UserModel;
 import com.example.myapplication.utils.AndroidUtil;
 import com.example.myapplication.utils.FirebaseUtil;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.Query;
+
 import java.util.Arrays;
 
 public class ChatActivity extends AppCompatActivity {
@@ -21,6 +26,7 @@ public class ChatActivity extends AppCompatActivity {
     UserModel otherUser;
     String chatroomId;
     ChatRoomModel chatRoomModel;
+    ChatRecyclerAdapter adapter;
     EditText messageInput;
     ImageButton sendMessageBtn;
     ImageButton backBtn;
@@ -58,6 +64,36 @@ public class ChatActivity extends AppCompatActivity {
 
         // Создаем комнату чата
         getOrCreateChatroomModel();
+        setupChatRecyclerView();
+    }
+
+    void setupChatRecyclerView() {
+        // Создаём запрос
+        Query query = FirebaseUtil.getChatroomMessageReference(chatroomId)
+                .orderBy("timestamp", Query.Direction.DESCENDING);
+
+        // Получаем данные из запроса
+        FirestoreRecyclerOptions<ChatMessageModel> options = new FirestoreRecyclerOptions.Builder<ChatMessageModel>()
+                .setQuery(query,ChatMessageModel.class).build();
+
+        // Преобразовываем запрос
+        adapter  = new ChatRecyclerAdapter(options,getApplicationContext());
+        //Выстраиваем сообщения в правильном порядке
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        manager.setReverseLayout(true);
+        //Отрисовываем
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setAdapter(adapter);
+        adapter.startListening();
+
+        // Прокрутка сообщений
+        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
+                recyclerView.smoothScrollToPosition(0);
+            }
+        });
     }
 
     void sendMessageToUser(String message) {
@@ -65,6 +101,7 @@ public class ChatActivity extends AppCompatActivity {
         // Время последнего сообщения и имя пользователя, от которого пришло сообщение
         chatRoomModel.setLastMessageTimestamp(Timestamp.now());
         chatRoomModel.setLastMessageSenderId(FirebaseUtil.currenntUserId());
+        chatRoomModel.setLastMessage(message);
         // Привязываем к БД
         FirebaseUtil.getChatroomReference(chatroomId).set(chatRoomModel);
 
