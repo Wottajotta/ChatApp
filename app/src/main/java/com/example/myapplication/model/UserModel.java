@@ -7,6 +7,7 @@ public class UserModel {
     private String username;
     private Timestamp createTimestamp;
     private String userId;
+    private String fcmToken;
 
     public UserModel() {
     }
@@ -44,6 +45,14 @@ public class UserModel {
 
     public Timestamp getCreateTimestamp() {
         return createTimestamp;
+    }
+
+    public String getFcmToken() {
+        return fcmToken;
+    }
+
+    public void setFcmToken(String fcmToken) {
+        this.fcmToken = fcmToken;
     }
 
     public void setCreateTimestamp(Timestamp createTimestamp) {
