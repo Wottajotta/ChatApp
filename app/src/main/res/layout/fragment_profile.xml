@@ -16,7 +16,8 @@
        android:backgroundTint="@color/my_primary"
        android:src="@drawable/user_icon"
        android:scaleType="centerCrop"
-       android:layout_marginBottom="40dp"/>
+       android:layout_marginBottom="40dp"
+       android:contentDescription="Profile pic" />
 
     <EditText
         android:id="@+id/profile_username"
@@ -38,7 +39,7 @@
         android:background="@drawable/edit_text_rounded_corner"
         android:elevation="5dp"
         android:hint="Телефон"
-        android:inputType="text"
+        android:inputType="phone"
         android:minHeight="48dp"
         android:enabled="false"
         android:padding="10dp" />
@@ -69,7 +70,7 @@
         android:id="@+id/logout_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Выход"/>
+        android:text="Выход из системы"/>
 
 
 </LinearLayout>
