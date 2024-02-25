@@ -69,7 +69,9 @@
         android:layout_height="150dp"
         android:src="@drawable/otp_icon"
         app:tint="@color/my_primary"
-        android:layout_weight="20"/>
+        android:layout_weight="20"
+        android:importantForAccessibility="no"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:layout_width="match_parent"
@@ -95,11 +97,12 @@
             android:layout_margin="10dp"
             android:background="@drawable/edit_text_rounded_corner"
             android:elevation="5dp"
-            android:hint="Одноразовый пароль"
+            android:hint="@string/otp"
             android:inputType="number"
             android:maxLength="6"
             android:minHeight="48dp"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:importantForAutofill="no" />
     </LinearLayout>
 
     <!-- КОНЕЦ ВТОРОГО БЛОКА -->
@@ -133,6 +136,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Отправить код повторно через 30 сек"/>
+        android:text="@string/resend_otp"/>
 
 </LinearLayout>

@@ -17,7 +17,7 @@
             android:id="@+id/other_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Имя пользователя"
+            android:text="@string/username"
             android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/white"
@@ -34,7 +34,7 @@
             android:layout_toEndOf="@id/back_btn"/>
 
         <ImageButton
-            android:contentDescription="back_btn"
+            android:contentDescription="@string/back_btn_description"
             android:id="@+id/back_btn"
             android:layout_width="48dp"
             android:layout_height="48dp"
@@ -70,7 +70,7 @@
             android:elevation="4dp"
             android:padding="10dp"
             android:layout_toStartOf="@id/message_send_btn"
-            android:autofillHints="Сообщение"
+            android:autofillHints="@string/message_hint"
             android:inputType="text" />
         
         <ImageButton
@@ -84,7 +84,7 @@
             app:tint="@color/my_primary"
             android:padding="8dp"
             android:layout_marginStart="10dp"
-            android:contentDescription="send" />
+            android:contentDescription="@string/message_btn_description" />
         
     </RelativeLayout>
 

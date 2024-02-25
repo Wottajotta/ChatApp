@@ -22,10 +22,10 @@
             android:textColor="@color/white"
             android:layout_marginStart="10dp"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/back_btn"/>
+            android:layout_toEndOf="@id/back_btn"/>
 
         <ImageButton
-            android:contentDescription="back_btn"
+            android:contentDescription="@string/back_btn_description"
             android:id="@+id/back_btn"
             android:layout_width="48dp"
             android:layout_height="48dp"
@@ -42,29 +42,40 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
         android:layout_margin="10dp">
-        
+
         <EditText
             android:id="@+id/search_username_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toStartOf="@id/search_user_btn"
             android:background="@drawable/edit_text_rounded_corner"
-            android:layout_margin="10dp"
-            android:hint="Имя пользователя"
-            android:padding="10dp"
             android:elevation="4dp"
-            android:layout_toLeftOf="@id/search_user_btn"/>
+            android:hint="@string/username"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:padding="10dp"
+            android:textColorHint="#757575"
+            tools:ignore="TextFields"
+            android:importantForAutofill="no" />
 
         <ImageButton
             android:id="@+id/search_user_btn"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/search_icon"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
+            android:layout_margin="10dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            app:tint="@color/my_primary"
+            android:contentDescription="@string/search_button_description"
             android:padding="10dp"
-            android:layout_margin="10dp"/>
+            android:src="@drawable/search_icon"
+            app:tint="@color/my_primary"
+            tools:ignore="TouchTargetSizeCheck" />
         
     </RelativeLayout>
 

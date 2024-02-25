@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -13,6 +12,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.myapplication.model.UserModel;
 
 public class AndroidUtil {
+
 
     public static void showToast(Context context, String message) {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show();
@@ -41,13 +41,13 @@ public class AndroidUtil {
         Glide.with(context).load(imageUri).apply(RequestOptions.circleCropTransform()).into(imageView);
     }
 
-
-    public static void counterGone(TextView messageCounter) {
-        messageCounter.setVisibility(View.GONE);
+    public static void counterVisible(boolean visible, ImageView messageCounter) {
+        if (visible) {
+            messageCounter.setVisibility(View.VISIBLE);
+        } else {
+            messageCounter.setVisibility(View.GONE);
+        }
     }
 
-    public static void counterShow(TextView messageCounter) {
-        messageCounter.setVisibility(View.VISIBLE);
-    }
 
 }

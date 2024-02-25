@@ -1,5 +1,6 @@
 package com.example.myapplication.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -32,16 +33,18 @@ public class RecentChatRecyclerAdapter extends FirestoreRecyclerAdapter<ChatRoom
     }
 
     // Получаем данные из модели и отрисовывем активный чат
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onBindViewHolder(@NonNull ChatRoomModelViewHolder holder, int position, @NonNull ChatRoomModel model) {
         FirebaseUtil.getOtherUserFromChatroom(model.getUserIds())
                 .get().addOnCompleteListener(task -> {
                     if(task.isSuccessful()) {
-                        boolean lastMessageSentByMe = model.getLastMessageSenderId().equals(FirebaseUtil.currenntUserId());
 
+                        boolean lastMessageSentByMe = model.getLastMessageSenderId().equals(FirebaseUtil.currenntUserId());
                         UserModel otherUserModel = task.getResult().toObject(UserModel.class);
 
                         // Получаем аватар
+                        assert otherUserModel != null;
                         FirebaseUtil.getOtherProfilePicStorageRef(otherUserModel.getUserId()).getDownloadUrl()
                                 .addOnCompleteListener(t -> {
                                     if(t.isSuccessful()){
@@ -53,16 +56,17 @@ public class RecentChatRecyclerAdapter extends FirestoreRecyclerAdapter<ChatRoom
 
                         holder.usernameText.setText(otherUserModel.getUsername());
                         if(lastMessageSentByMe) {
-                            AndroidUtil.counterGone(holder.messageCounter);
+                            AndroidUtil.counterVisible(false,holder.messageCounter);
                             holder.lastMessageText.setText("Вы: " + model.getLastMessage());
                         } else {
-                            AndroidUtil.counterShow(holder.messageCounter);
+                            AndroidUtil.counterVisible(true,holder.messageCounter);
                             holder.lastMessageText.setText(model.getLastMessage());
                         }
                         holder.lastMessageTime.setText(FirebaseUtil.timestampToString(model.getLastMessageTimestamp()));
 
                         // переход в чат с пользователем
                         holder.itemView.setOnClickListener(view -> {
+                            AndroidUtil.counterVisible(false ,holder.messageCounter);
                             Intent intent = new Intent(context, ChatActivity.class);
                             AndroidUtil.passUserModelAsIntent(intent, otherUserModel);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -88,7 +92,7 @@ public class RecentChatRecyclerAdapter extends FirestoreRecyclerAdapter<ChatRoom
         TextView lastMessageText;
         TextView lastMessageTime;
         ImageView profilePic;
-        TextView messageCounter;
+        ImageView messageCounter;
         public ChatRoomModelViewHolder(@NonNull View itemView) {
             super(itemView);
             usernameText = itemView.findViewById(R.id.user_name_text);

@@ -16,19 +16,23 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_weight="20">
+
         <RelativeLayout
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_margin="10dp"
             android:background="@drawable/circular_bar"
-            android:backgroundTint="@color/gray">
+            android:backgroundTint="@color/gray"
+            tools:ignore="TextSizeCheck">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:text="@string/first_step"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                android:text="@string/first_step"/>
+                tools:ignore="TextContrastCheck" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -36,14 +40,17 @@
             android:layout_height="32dp"
             android:layout_margin="10dp"
             android:background="@drawable/circular_bar"
-            android:backgroundTint="@color/gray">
+            android:backgroundTint="@color/gray"
+            tools:ignore="TextSizeCheck">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:text="@string/second_step"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                android:text="@string/second_step"/>
+                tools:ignore="TextContrastCheck" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -51,14 +58,16 @@
             android:layout_height="32dp"
             android:layout_margin="10dp"
             android:background="@drawable/circular_bar"
-            android:backgroundTint="@color/my_primary">
+            android:backgroundTint="@color/my_primary"
+            tools:ignore="TextSizeCheck">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:text="@string/third_step"
                 android:textColor="@color/white"
-                android:textSize="18sp"
-                android:text="@string/third_step"/>
+                android:textSize="18sp" />
         </RelativeLayout>
     </LinearLayout>
     <!-- КОНЕЦ ВЕРХНЕГО БЛОКА -->
@@ -69,7 +78,8 @@
         android:layout_height="150dp"
         android:src="@drawable/user_icon"
         app:tint="@color/my_primary"
-        android:layout_weight="20"/>
+        android:layout_weight="20"
+        android:contentDescription="@string/person_icon_description" />
 
     <TextView
         android:layout_width="match_parent"
@@ -95,10 +105,12 @@
             android:layout_margin="10dp"
             android:background="@drawable/edit_text_rounded_corner"
             android:elevation="5dp"
-            android:hint="Имя пользователя"
+            android:hint="@string/username"
             android:inputType="text"
             android:minHeight="48dp"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:textColorHint="#757575"
+            android:importantForAutofill="no" />
     </LinearLayout>
 
     <!-- КОНЕЦ ВТОРОГО БЛОКА -->
@@ -115,7 +127,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Готово"
+            android:text="@string/done"
             android:background="@drawable/btn_rounded_corner"/>
         <!-- ИНДИКАТОР ЗАГРУЗКИ -->
         <ProgressBar

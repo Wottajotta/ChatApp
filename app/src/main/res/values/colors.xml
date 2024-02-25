@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="my_primary">#FF5964</color>
-    <color name="my_secondary">#FCE239</color>
+    <!--Основная палитра-->
+    <color name="my_primary">#003153</color>
+    <color name="my_secondary">#F0F8FF</color>
 
+    <!--Ч/Б-->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <!--Дополнительная палитра-->
     <color name="off_white">#FAFAFA</color>
     <color name="gray">#C3C3C3</color>
-    
+
+    <!--Цвета чата-->
     <color name="chat_color_sender">#1E88E5</color>
     <color name="chat_color_receiver">#7CB342</color>
 </resources>
