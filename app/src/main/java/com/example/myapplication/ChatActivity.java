@@ -47,6 +47,7 @@ public class ChatActivity extends AppCompatActivity {
     TextView otherUsername;
     RecyclerView recyclerView;
     ImageView imageView;
+    TextView messageCounter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +65,7 @@ public class ChatActivity extends AppCompatActivity {
         otherUsername = findViewById(R.id.other_username);
         recyclerView = findViewById(R.id.chat_recycler_view);
         imageView = findViewById(R.id.profile_pic_image_view);
+        messageCounter = findViewById(R.id.message_counter);
 
         FirebaseUtil.getOtherProfilePicStorageRef(otherUser.getUserId()).getDownloadUrl()
                 .addOnCompleteListener(t -> {
@@ -74,9 +76,12 @@ public class ChatActivity extends AppCompatActivity {
                 });
 
         // Кнопка "назад"
-        backBtn.setOnClickListener(view -> onBackPressed());
+        backBtn.setOnClickListener(view -> {
+            onBackPressed();
+        });
         otherUsername.setText(otherUser.getUsername());
 
+        // Отправка сообщения
         sendMessageBtn.setOnClickListener(view -> {
             String message = messageInput.getText().toString().trim();
             if(message.isEmpty()) {
@@ -129,6 +134,7 @@ public class ChatActivity extends AppCompatActivity {
         // Привязываем к БД
         FirebaseUtil.getChatroomReference(chatroomId).set(chatRoomModel);
 
+        // Отправляем сообщение
         ChatMessageModel chatMessageModel = new ChatMessageModel(message, FirebaseUtil.currenntUserId(), Timestamp.now());
         FirebaseUtil.getChatroomMessageReference(chatroomId).add(chatMessageModel).addOnCompleteListener(task -> {
             if(task.isSuccessful()){
@@ -214,4 +220,5 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
     }
+
 }

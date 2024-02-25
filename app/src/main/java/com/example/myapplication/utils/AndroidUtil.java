@@ -3,7 +3,9 @@ package com.example.myapplication.utils;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -37,6 +39,15 @@ public class AndroidUtil {
     // Метод для парсинга uri изображение и его установки в профиль
     public static void setProfilePic(Context context, Uri imageUri, ImageView imageView) {
         Glide.with(context).load(imageUri).apply(RequestOptions.circleCropTransform()).into(imageView);
+    }
+
+
+    public static void counterGone(TextView messageCounter) {
+        messageCounter.setVisibility(View.GONE);
+    }
+
+    public static void counterShow(TextView messageCounter) {
+        messageCounter.setVisibility(View.VISIBLE);
     }
 
 }

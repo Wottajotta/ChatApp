@@ -1,5 +1,8 @@
 package com.example.myapplication.utils;
 
+import android.view.View;
+import android.widget.TextView;
+
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;

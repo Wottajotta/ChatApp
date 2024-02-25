@@ -50,10 +50,13 @@ public class RecentChatRecyclerAdapter extends FirestoreRecyclerAdapter<ChatRoom
                                     }
                                 });
 
+
                         holder.usernameText.setText(otherUserModel.getUsername());
                         if(lastMessageSentByMe) {
+                            AndroidUtil.counterGone(holder.messageCounter);
                             holder.lastMessageText.setText("Вы: " + model.getLastMessage());
                         } else {
+                            AndroidUtil.counterShow(holder.messageCounter);
                             holder.lastMessageText.setText(model.getLastMessage());
                         }
                         holder.lastMessageTime.setText(FirebaseUtil.timestampToString(model.getLastMessageTimestamp()));
@@ -85,12 +88,16 @@ public class RecentChatRecyclerAdapter extends FirestoreRecyclerAdapter<ChatRoom
         TextView lastMessageText;
         TextView lastMessageTime;
         ImageView profilePic;
+        TextView messageCounter;
         public ChatRoomModelViewHolder(@NonNull View itemView) {
             super(itemView);
             usernameText = itemView.findViewById(R.id.user_name_text);
             lastMessageText = itemView.findViewById(R.id.last_message_text);
             lastMessageTime = itemView.findViewById(R.id.last_message_time_text);
             profilePic = itemView.findViewById(R.id.profile_pic_image_view);
+            messageCounter = itemView.findViewById(R.id.message_counter);
         }
     }
+
+
 }
