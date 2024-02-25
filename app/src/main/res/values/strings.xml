@@ -1,18 +1,46 @@
 <resources>
-    <string name="app_name">MyChat</string>
-    <string name="developed">Developed by Kharchenko V</string>
-    <string name="for_who">for USUE</string>
+    <!--Splash Activity-->
+    <string name="app_name">МойЧат</string>
+    <string name="developed">Разработано Харченко В.</string>
+    <string name="for_who">для УрГЭУ</string>
 
+    <!--Login Activity-->
     <string name="first_step">1</string>
     <string name="second_step">2</string>
     <string name="third_step">3</string>
+
     <string name="enter_phone">Введите номер телефона</string>
+    <string name="phone_hint">(000) 000–00–00</string>
+
     <string name="enter_otp">Введите код с смс</string>
+    <string name="otp">Одноразовый код</string>
+    <string name="resend_otp">Отправить код повторно через 30 сек</string>
+
     <string name="enter_username">Введите имя пользователя</string>
+
     <string name="next">Далее</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="done">Готово</string>
+
+
+    <!--Main Activity-->
+    <string name="username">Имя пользователя</string>
+    <string name="phone">Телефон</string>
+
     <string name="search_user">Поиск</string>
     <string name="message_hint">Сообщение</string>
+
+    <string name="logout">Выйти из системы</string>
+    <string name="update_btn">Обновить</string>
+
+    <!--Descriptions-->
+    <string name="message_btn_description">Отправить</string>
+    <string name="back_btn_description">Назад</string>
+    <string name="phone_icon_description">phone_icon</string>
+    <string name="person_icon_description">person_icon</string>
+    <string name="search_button_description">search_button</string>
+    <string name="logo_description">logo_description</string>
+    <string name="new_message_description">new_message_description</string>
+
 
 
 </resources>

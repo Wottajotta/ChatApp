@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -47,7 +48,8 @@ public class ChatActivity extends AppCompatActivity {
     TextView otherUsername;
     RecyclerView recyclerView;
     ImageView imageView;
-    TextView messageCounter;
+
+    ImageView messageCounter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,9 +78,7 @@ public class ChatActivity extends AppCompatActivity {
                 });
 
         // Кнопка "назад"
-        backBtn.setOnClickListener(view -> {
-            onBackPressed();
-        });
+        backBtn.setOnClickListener((View view) -> onBackPressed());
         otherUsername.setText(otherUser.getUsername());
 
         // Отправка сообщения
@@ -175,6 +175,7 @@ public class ChatActivity extends AppCompatActivity {
 
                   // Задаём форму уведомления
                   JSONObject notificationObj = new JSONObject();
+                  assert currentUser != null;
                   notificationObj.put("title", currentUser.getUsername());
                   notificationObj.put("body",message);
 
@@ -190,7 +191,7 @@ public class ChatActivity extends AppCompatActivity {
                   callApi(jsonObject);
 
               }catch (Exception e) {
-
+                  throw new RuntimeException(e);
               }
           }
        });
@@ -215,7 +216,7 @@ public class ChatActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+            public void onResponse(@NonNull Call call, @NonNull Response response) {
 
             }
         });
