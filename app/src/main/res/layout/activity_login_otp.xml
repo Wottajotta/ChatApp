@@ -8,7 +8,7 @@
     android:gravity="center"
     android:layout_margin="20dp"
     android:weightSum="100"
-    tools:context=".LoginOtpActivity">
+    tools:context=".login.LoginOtpActivity">
 
     <!-- ВЕРХНИЙ БЛОК -->
     <LinearLayout

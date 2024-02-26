@@ -25,13 +25,13 @@
             android:name=".SearchUserActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginUsernameActivity"
+            android:name=".login.LoginUsernameActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginOtpActivity"
+            android:name=".login.LoginOtpActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginPhoneNumberActivity"
+            android:name=".login.LoginPhoneNumberActivity"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
