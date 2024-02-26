@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "504938051922",
-    "project_id": "mychatappbackendproje",
-    "storage_bucket": "mychatappbackendproje.appspot.com"
+    "project_number": "255443162046",
+    "project_id": "mychat-backend-7d90e",
+    "storage_bucket": "mychat-backend-7d90e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:504938051922:android:bb51749d8edaf1d9a2e28b",
+        "mobilesdk_app_id": "1:255443162046:android:e32117055071a951381fef",
         "android_client_info": {
           "package_name": "com.example.myapplication"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDxsAGoO-oqM-Ehe7RiGF0AMJUHCxbOWdc"
+          "current_key": "AIzaSyDn1kaD-px0ygXKhIxJI0BXXYuOuGuxVj0"
         }
       ],
       "services": {
